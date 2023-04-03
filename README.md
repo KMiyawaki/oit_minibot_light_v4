@@ -44,6 +44,15 @@ DC-DC コンバータの LED（図中指差ししている箇所）が赤くな�
 
 Bluetooth キーボードはタッチパッド上で一本指でタッチするとクリック、２本指でタッチすると右クリックになっている。
 
+### モータやLiDARの起動のみを行う
+
+別プログラム（`oit_pbl_robocon_sample`等）からロボットをコントロールする場合に使う。
+
+```shell
+$ roslaunch oit_minibot_light_v4 devices.launch use_camera:=false
+# カメラが使える場合は use_camera:=false 無しに起動すれば良い。
+```
+
 ### テレオペの起動
 
 ジョイスティックでロボットを操作する。LRF（Laser Range Finder）も起動する。ロボットの動作テストに用いる。  
@@ -54,8 +63,9 @@ Bluetooth キーボードはタッチパッド上で一本指でタッチする�
 任意のディレクトリで下記のコマンドを起動する。
 
 ```shell
-$ roslaunch oit_minibot_light_v4 teleop.launch
+$ roslaunch oit_minibot_light_v4 teleop.launch use_camera:=false
 # teleop:=joy をつけるとジョイスティックによるテレオペが起動する。
+# カメラが使える場合は use_camera:=false 無しに起動すれば良い。
 ```
 
 - **同様のことが、デスクトップ上の「T.op」というボタンのダブルクリックでも実行できる**
@@ -65,8 +75,9 @@ $ roslaunch oit_minibot_light_v4 teleop.launch
 ジョイスティックでロボットを操作しながらロボット周囲の環境の地図を作成する。
 
 ```shell
-$ roslaunch oit_minibot_light_v4 mapping.launch
+$ roslaunch oit_minibot_light_v4 mapping.launch use_camera:=false
 # teleop:=joy をつけるとジョイスティックによるテレオペが起動する。
+# カメラが使える場合は use_camera:=false 無しに起動すれば良い。
 ```
 
 - **同様のことが、デスクトップ上の「Mapping」というボタンのダブルクリックでも実行できる**
@@ -102,7 +113,9 @@ test.yaml
 - 例：`test.pgm  test.yaml`の場合、地図名は`test`。
 
 ```shell
-$ roslaunch oit_minibot_light_v4 navigation.launch map_name:=test # map_name:=以降の文字をナビゲーション時に利用する地図名に変更する。
+$ roslaunch oit_minibot_light_v4 navigation.launch map_name:=test use_camera:=false
+# カメラが使える場合は use_camera:=false 無しに起動すれば良い。
+# map_name:=以降の文字をナビゲーション時に利用する地図名に変更する。
 ```
 
 自己位置推定、ゴール指定方法はこれまで通り。
